@@ -8,10 +8,25 @@ export default class SolutionView{
         this.rungeKutta = rungeKutta;
     }
 
+    updateChartCanvas(){
+        let container = document.getElementById('mainChartContainer');
+        container.innerHTML = '<canvas id="mainChart"></canvas>';
+    }
+
     renderChart(){
+        this.updateChartCanvas();
+
         let ctx = document.getElementById('mainChart');
 
+        let labels = [];
+        this.exact.forEach((point) => {
+            labels.push(point.x);
+        });
+
+        console.log(labels);
+
         let data = {
+            labels: labels,
             datasets: [
                 {
                     label: 'Exact',
@@ -41,10 +56,10 @@ export default class SolutionView{
                 scales: {
                     xAxes: [{
                         display: true,
-						            scaleLabel: {
-							              display: true,
-							              labelString: 'X'
-						            },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'X'
+                        },
                         ticks: {
                             min: 0,
                             max: 10,
@@ -52,17 +67,17 @@ export default class SolutionView{
                         }
                     }],
                     yAxes: [{
-						            display: true,
-						            scaleLabel: {
-							              display: true,
-							              labelString: 'Y'
-						            },
-						            ticks: {
-							              min: 0,
-							              max: 25,
-							              stepSize: 5
-						            }
-					          }]
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Y'
+                        }//,
+                        //ticks: {
+                        //    min: 0,
+                        //    max: 200,
+                        //    stepSize: 5
+                        //}
+                    }]
                 }
             },
         });
