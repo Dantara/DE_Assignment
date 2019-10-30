@@ -9,4 +9,5 @@ solutionContoller.renderSolution();
 
 let submitSolution = new SubmitSolution();
 submitSolution.setOnClick();
+submitSolution.enableAutoReload();
 

@@ -23,8 +23,6 @@ export default class SolutionView{
             labels.push(point.x);
         });
 
-        console.log(labels);
-
         let data = {
             labels: labels,
             datasets: [
@@ -45,8 +43,6 @@ export default class SolutionView{
                     pointBorderColor: '#be3b14'
                 }]
         };
-
-        console.log(data);
 
         let myChart = new Chart(ctx, {
             type: 'line',
@@ -78,6 +74,9 @@ export default class SolutionView{
                         //    stepSize: 5
                         //}
                     }]
+                },
+                animation: {
+                    duration: 0
                 }
             },
         });
