@@ -1,5 +1,6 @@
 import 'bootstrap';
 import './assets/css/app.scss';
+import 'mathjax';
 import SubmitSolution from './view/submitSolution.js';
 import SolutionView from './view/solutionView.js';
 import SolutionController from './controller/solutionController.js';

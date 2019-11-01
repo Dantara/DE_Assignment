@@ -1,5 +1,7 @@
 import Exact from './../model/exact.js';
 import Euler from './../model/euler.js';
+import ImprovedEuler from './../model/improvedEuler.js';
+import RungeKutta from './../model/rungeKutta.js';
 import SolutionView from './../view/solutionView.js';
 
 export default class SolutionConstroller{
@@ -17,8 +19,16 @@ export default class SolutionConstroller{
         let euler = new Euler(this.x0, this.y0, this.X, this.N);
         euler.calculate();
 
-        let solutionView = new SolutionView(exact.result, euler.result);
+        let improvedEuler = new ImprovedEuler(this.x0, this.y0, this.X, this.N);
+        improvedEuler.calculate();
+
+        let rungeKutta = new RungeKutta(this.x0, this.y0, this.X, this.N);
+        rungeKutta.calculate();
+
+        let solutionView = new SolutionView(exact.result, euler.result,
+                                            improvedEuler.result, rungeKutta.result);
         solutionView.renderChart();
+
     }
 }
 

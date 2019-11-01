@@ -30,17 +30,37 @@ export default class SolutionView{
                     label: 'Exact',
                     data: this.exact,
                     fill: false,
-                    borderColor: '#9e1428',
-                    pointBackgroudColor: '#9e1428',
-                    pointBorderColor: '#9e1428',
+                    borderColor: '#375e97',
+                    backgroudColor: '#375e97',
+                    pointBackgroudColor: '#375e97',
+                    pointBorderColor: '#375e97',
                 },
                 {
                     label: 'Euler',
                     data: this.euler,
                     fill: false,
-                    borderColor: '#be3b14',
-                    pointBackgroudColor: '#be3b14',
-                    pointBorderColor: '#be3b14'
+                    borderColor: '#fb6542',
+                    backgroudColor: '#fb6542',
+                    pointBackgroudColor: '#fb6542',
+                    pointBorderColor: '#fb6542'
+                },
+                {
+                    label: 'Improved Euler',
+                    data: this.improvedEuler,
+                    fill: false,
+                    borderColor: '#ffbb00',
+                    backgroudColor: '#ffbb00',
+                    pointBackgroudColor: '#ffbb00',
+                    pointBorderColor: '#ffbb00'
+                },
+                {
+                    label: 'Runge-Kutta',
+                    data: this.rungeKutta,
+                    fill: false,
+                    borderColor: '#3f681c',
+                    backgroudColor: '#3f681c',
+                    pointBackgroudColor: '#3f681c',
+                    pointBorderColor: '#3f681c'
                 }]
         };
 
@@ -67,17 +87,17 @@ export default class SolutionView{
                         scaleLabel: {
                             display: true,
                             labelString: 'Y'
-                        }//,
+                        },
                         //ticks: {
                         //    min: 0,
                         //    max: 200,
                         //    stepSize: 5
                         //}
                     }]
-                },
-                animation: {
-                    duration: 0
-                }
+                }//,
+                //animation: {
+                //    duration: 0
+                //}
             },
         });
     }
