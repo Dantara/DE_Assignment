@@ -21,7 +21,10 @@ export default class RungeKutta {
 
         this.data = [];
 
-        this.data.push({x: tmpX, y: tmpY});
+        this.data.push({
+            x: parseFloat(tmpX).toFixed(2),
+            y: parseFloat(tmpY).toFixed(2)
+        });
 
         while(tmpX + this.N < this.X){
             m1 = this.N * this.fn(this.x0, this.y0);
@@ -33,8 +36,8 @@ export default class RungeKutta {
             tmpY = tmpY + (m1 + (2 * m2) + (2 * m3) + m4) / 6;
 
             let point = {
-                x: tmpX,
-                y: tmpY
+                x: parseFloat(tmpX).toFixed(2),
+                y: parseFloat(tmpY).toFixed(2)
             };
 
             this.data.push(point);

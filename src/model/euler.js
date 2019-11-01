@@ -18,7 +18,10 @@ export default class Euler {
 
         this.data = [];
 
-        this.data.push({x: tmpX, y: tmpY});
+        this.data.push({
+            x: parseFloat(tmpX).toFixed(2),
+            y: parseFloat(tmpY).toFixed(2)
+        });
 
         while(tmpX + this.N < this.X){
             slope = this.fn(tmpX, tmpY);
@@ -27,8 +30,8 @@ export default class Euler {
             tmpX = tmpX + this.N;
 
             let point = {
-                x: tmpX,
-                y: tmpY
+                x: parseFloat(tmpX).toFixed(2),
+                y: parseFloat(tmpY).toFixed(2)
             };
 
             this.data.push(point);

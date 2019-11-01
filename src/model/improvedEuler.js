@@ -19,7 +19,10 @@ export default class ImprovedEuler {
 
         this.data = [];
 
-        this.data.push({x: tmpX, y: tmpY});
+        this.data.push({
+            x: parseFloat(tmpX).toFixed(2),
+            y: parseFloat(tmpY).toFixed(2)
+        });
 
         while(tmpX + this.N < this.X){
             m1 = this.fn(this.x0, this.y0);
@@ -29,8 +32,8 @@ export default class ImprovedEuler {
             tmpX = tmpX + this.N;
 
             let point = {
-                x: tmpX,
-                y: tmpY
+                x: parseFloat(tmpX).toFixed(2),
+                y: parseFloat(tmpY).toFixed(2)
             };
 
             this.data.push(point);

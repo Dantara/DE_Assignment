@@ -17,16 +17,18 @@ export default class Exact {
     calculate(){
         this.solveIVP();
 
-        let tmp = this.x0;
+        let tmpX = this.x0;
         this.data = [];
 
-        while(tmp < this.X){
+        while(tmpX < this.X){
+            let tmpY = this.fn(tmpX);
+
             let point = {
-                x: tmp,
-                y: this.fn(tmp)
+                x: parseFloat(tmpX).toFixed(2),
+                y: parseFloat(tmpY).toFixed(2)
             };
 
-            tmp = tmp + this.N;
+            tmpX = tmpX + this.N;
 
             this.data.push(point);
         }

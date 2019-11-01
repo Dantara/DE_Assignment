@@ -64,6 +64,8 @@ export default class SolutionView{
                 }]
         };
 
+        console.log(data);
+
         let myChart = new Chart(ctx, {
             type: 'line',
             data: data,
