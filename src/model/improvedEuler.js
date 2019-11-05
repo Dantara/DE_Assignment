@@ -11,11 +11,11 @@ export default class ImprovedEuler {
     }
 
     calculate(){
-        let m1 = this.fn(this.x0, this.y0);
-        let m2 = this.fn(this.x0, this.y0 + m1 * this.N);
+        let m1;
+        let m2;
 
         let tmpX = this.x0;
-        let tmpY = this.N * (m1 + m2) / 2;
+        let tmpY = this.y0;
 
         this.data = [];
 
@@ -25,8 +25,8 @@ export default class ImprovedEuler {
         });
 
         while(tmpX + this.N < this.X){
-            m1 = this.fn(this.x0, this.y0);
-            m2 = this.fn(this.x0, this.y0 + m1 * this.N);
+            m1 = this.fn(tmpX, tmpY);
+            m2 = this.fn(tmpX + this.N, tmpY + m1 * this.N);
 
             tmpY = tmpY + this.N * (m1 + m2) / 2;
             tmpX = tmpX + this.N;

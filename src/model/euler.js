@@ -11,7 +11,7 @@ export default class Euler {
     }
 
     calculate(){
-        let slope = this.fn(this.x0, this.y0);
+        let slope;
 
         let tmpX = this.x0;
         let tmpY = this.y0;
@@ -24,9 +24,9 @@ export default class Euler {
         });
 
         while(tmpX + this.N < this.X){
-            slope = this.fn(tmpX, tmpY);
+            slope = this.fn(tmpX + this.N, tmpY);
 
-            tmpY = tmpY + slope * tmpX;
+            tmpY = tmpY + slope * this.N;
             tmpX = tmpX + this.N;
 
             let point = {

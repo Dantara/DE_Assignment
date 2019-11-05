@@ -77,11 +77,6 @@ export default class SolutionView{
                         scaleLabel: {
                             display: true,
                             labelString: 'X'
-                        },
-                        ticks: {
-                            min: 0,
-                            max: 10,
-                            stepSize: 1
                         }
                     }],
                     yAxes: [{
@@ -90,16 +85,11 @@ export default class SolutionView{
                             display: true,
                             labelString: 'Y'
                         },
-                        //ticks: {
-                        //    min: 0,
-                        //    max: 200,
-                        //    stepSize: 5
-                        //}
                     }]
-                }//,
-                //animation: {
-                //    duration: 0
-                //}
+                },
+                animation: {
+                    duration: 0
+                }
             },
         });
     }

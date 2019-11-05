@@ -11,13 +11,13 @@ export default class RungeKutta {
     }
 
     calculate(){
-        let m1 = this.N * this.fn(this.x0, this.y0);
-        let m2 = this.N * this.fn(this.x0 + (this.N / 2), this.y0 + (m1/2));
-        let m3 = this.N * this.fn(this.x0 + (this.N / 2), this.y0 + (m2/2));
-        let m4 = this.N * this.fn(this.x0 + this.N, this.y0 + m3);
+        let m1;
+        let m2;
+        let m3;
+        let m4;
 
         let tmpX = this.x0;
-        let tmpY = (m1 + (2 * m2) + (2 * m3) + m4) / 6;
+        let tmpY = this.y0;
 
         this.data = [];
 
@@ -27,10 +27,10 @@ export default class RungeKutta {
         });
 
         while(tmpX + this.N < this.X){
-            m1 = this.N * this.fn(this.x0, this.y0);
-            m2 = this.N * this.fn(this.x0 + (this.N / 2), this.y0 + (m1/2));
-            m3 = this.N * this.fn(this.x0 + (this.N / 2), this.y0 + (m2/2));
-            m4 = this.N * this.fn(this.x0 + this.N, this.y0 + m3);
+            m1 = this.N * this.fn(tmpX, tmpY);
+            m2 = this.N * this.fn(tmpX + (this.N / 2), tmpY + (m1/2));
+            m3 = this.N * this.fn(tmpX + (this.N / 2), tmpY + (m2/2));
+            m4 = this.N * this.fn(tmpX + this.N, tmpY + m3);
 
             tmpX = tmpX + this.N;
             tmpY = tmpY + (m1 + (2 * m2) + (2 * m3) + m4) / 6;
