@@ -3,7 +3,7 @@ export default class Euler {
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
-        this.N = N;
+        this.h = (X - x0) / N;
     }
 
     fn(x, y){
@@ -23,11 +23,11 @@ export default class Euler {
             y: parseFloat(tmpY).toFixed(2)
         });
 
-        while(tmpX + this.N < this.X){
-            slope = this.fn(tmpX + this.N, tmpY);
+        while(tmpX + this.h <= this.X){
+            slope = this.fn(tmpX + this.h, tmpY);
 
-            tmpY = tmpY + slope * this.N;
-            tmpX = tmpX + this.N;
+            tmpY = tmpY + slope * this.h;
+            tmpX = tmpX + this.h;
 
             let point = {
                 x: parseFloat(tmpX).toFixed(2),

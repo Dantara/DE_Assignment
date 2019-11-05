@@ -3,7 +3,7 @@ export default class Exact {
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
-        this.N = N;
+        this.h = (X - x0) / N;
     }
 
     fn(x){
@@ -20,7 +20,7 @@ export default class Exact {
         let tmpX = this.x0;
         this.data = [];
 
-        while(tmpX < this.X){
+        while(tmpX <= this.X){
             let tmpY = this.fn(tmpX);
 
             let point = {
@@ -28,7 +28,7 @@ export default class Exact {
                 y: parseFloat(tmpY).toFixed(2)
             };
 
-            tmpX = tmpX + this.N;
+            tmpX = tmpX + this.h;
 
             this.data.push(point);
         }

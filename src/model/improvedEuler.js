@@ -3,7 +3,7 @@ export default class ImprovedEuler {
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
-        this.N = N;
+        this.h = (X - x0) / N;
     }
 
     fn(x, y){
@@ -24,12 +24,12 @@ export default class ImprovedEuler {
             y: parseFloat(tmpY).toFixed(2)
         });
 
-        while(tmpX + this.N < this.X){
+        while(tmpX + this.h <= this.X){
             m1 = this.fn(tmpX, tmpY);
-            m2 = this.fn(tmpX + this.N, tmpY + m1 * this.N);
+            m2 = this.fn(tmpX + this.h, tmpY + m1 * this.h);
 
-            tmpY = tmpY + this.N * (m1 + m2) / 2;
-            tmpX = tmpX + this.N;
+            tmpY = tmpY + this.h * (m1 + m2) / 2;
+            tmpX = tmpX + this.h;
 
             let point = {
                 x: parseFloat(tmpX).toFixed(2),

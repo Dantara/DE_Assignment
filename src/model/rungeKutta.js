@@ -3,7 +3,7 @@ export default class RungeKutta {
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
-        this.N = N;
+        this.h = (X - x0) / N;
     }
 
     fn(x, y){
@@ -26,13 +26,13 @@ export default class RungeKutta {
             y: parseFloat(tmpY).toFixed(2)
         });
 
-        while(tmpX + this.N < this.X){
-            m1 = this.N * this.fn(tmpX, tmpY);
-            m2 = this.N * this.fn(tmpX + (this.N / 2), tmpY + (m1/2));
-            m3 = this.N * this.fn(tmpX + (this.N / 2), tmpY + (m2/2));
-            m4 = this.N * this.fn(tmpX + this.N, tmpY + m3);
+        while(tmpX + this.h <= this.X){
+            m1 = this.h * this.fn(tmpX, tmpY);
+            m2 = this.h * this.fn(tmpX + (this.h / 2), tmpY + (m1/2));
+            m3 = this.h * this.fn(tmpX + (this.h / 2), tmpY + (m2/2));
+            m4 = this.h * this.fn(tmpX + this.h, tmpY + m3);
 
-            tmpX = tmpX + this.N;
+            tmpX = tmpX + this.h;
             tmpY = tmpY + (m1 + (2 * m2) + (2 * m3) + m4) / 6;
 
             let point = {
