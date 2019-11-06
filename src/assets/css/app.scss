@@ -1,5 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 
+body{
+    width: 100vw;
+    height: 100vh;
+    display: table;
+}
+
 #renderSolution{
     color: white;
     display: block;
@@ -16,4 +22,9 @@
 
 #n0-container{
     display: none;
+}
+
+#main-container{
+    display: table-cell;
+    vertical-align: middle;
 }
