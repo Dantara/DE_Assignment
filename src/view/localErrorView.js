@@ -30,27 +30,21 @@ export default class LocalErrorView{
                     data: this.euler,
                     fill: false,
                     borderColor: '#fb6542',
-                    backgroudColor: '#fb6542',
-                    pointBackgroudColor: '#fb6542',
-                    pointBorderColor: '#fb6542'
+                    backgroundColor: '#fb6542',
                 },
                 {
                     label: 'Improved Euler error',
                     data: this.improvedEuler,
                     fill: false,
                     borderColor: '#ffbb00',
-                    backgroudColor: '#ffbb00',
-                    pointBackgroudColor: '#ffbb00',
-                    pointBorderColor: '#ffbb00'
+                    backgroundColor: '#ffbb00',
                 },
                 {
                     label: 'Runge-Kutta error',
                     data: this.rungeKutta,
                     fill: false,
                     borderColor: '#3f681c',
-                    backgroudColor: '#3f681c',
-                    pointBackgroudColor: '#3f681c',
-                    pointBorderColor: '#3f681c'
+                    backgroundColor: '#3f681c',
                 }]
         };
 
