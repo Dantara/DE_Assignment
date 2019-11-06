@@ -10,7 +10,7 @@ export default class ImprovedEuler {
         return 1 + 2 * (y/x);
     }
 
-    calculate(){
+    calculateSolution(){
         let m1;
         let m2;
 
@@ -40,8 +40,19 @@ export default class ImprovedEuler {
         }
     }
 
-    get result(){
+    get solution(){
         return this.data;
+    }
+
+    calculateLocalError(exactSolution){
+        this.localError = this.data.map((point, index) => {
+            let error = {
+                x: parseFloat(point.x),
+                y: Math.abs(point.y - exactSolution[index].y)
+            };
+
+            return error;
+        });
     }
 
 }

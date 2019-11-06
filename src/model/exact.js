@@ -14,7 +14,7 @@ export default class Exact {
         this.C = (this.y0 + this.x0) / (this.x0 * this.x0);
     }
 
-    calculate(){
+    calculateSolution(){
         this.solveIVP();
 
         let tmpX = this.x0;
@@ -34,7 +34,7 @@ export default class Exact {
         }
     }
 
-    get result(){
+    get solution(){
         return this.data;
     }
 }

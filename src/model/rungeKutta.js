@@ -10,7 +10,7 @@ export default class RungeKutta {
         return 1 + 2 * (y/x);
     }
 
-    calculate(){
+    calculateSolution(){
         let m1;
         let m2;
         let m3;
@@ -44,8 +44,19 @@ export default class RungeKutta {
         }
     }
 
-    get result(){
+    get solution(){
         return this.data;
+    }
+
+    calculateLocalError(exactSolution){
+        this.localError = this.data.map((point, index) => {
+            let error = {
+                x: parseFloat(point.x),
+                y: Math.abs(point.y - exactSolution[index].y)
+            };
+
+            return error;
+        });
     }
 
 }

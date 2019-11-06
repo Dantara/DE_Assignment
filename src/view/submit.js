@@ -1,11 +1,13 @@
+import LocalErrorController from './../controller/localErrorController.js';
 import SolutionController from './../controller/solutionController.js';
 
-export default class SubmitSolution{
+export default class Submit{
     constructor(){
         this.x0_el = document.getElementById("inputX0");
         this.y0_el = document.getElementById("inputY0");
         this.X_el = document.getElementById("inputX");
         this.N_el = document.getElementById("inputN");
+        this.chart = document.getElementById("selectChart");
     }
 
     readData(){
@@ -36,8 +38,16 @@ export default class SubmitSolution{
         this.readData();
 
         if(this.checkData()){
-            let solution = new SolutionController(this.x0, this.y0, this.X, this.N);
-            solution.renderSolution();
+            switch(this.chart.selectedIndex){
+            case 0:
+                let solution = new SolutionController(this.x0, this.y0, this.X, this.N);
+                solution.update();
+                break;
+            case 1:
+                let localError = new LocalErrorController(this.x0, this.y0, this.X, this.N);
+                localError.update();
+                break;
+            }
         }
     }
 
@@ -61,5 +71,6 @@ export default class SubmitSolution{
         this.y0_el.onkeyup = update;
         this.X_el.onkeyup = update;
         this.N_el.onkeyup = update;
+        this.chart.onchange = update;
     }
 }

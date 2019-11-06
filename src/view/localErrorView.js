@@ -1,8 +1,7 @@
 import Chart from 'chart.js';
 
-export default class SolutionView{
-    constructor(exact, euler, impovedEuler, rungeKutta){
-        this.exact = exact;
+export default class LocalErrorView{
+    constructor(euler, impovedEuler, rungeKutta){
         this.euler = euler;
         this.improvedEuler = impovedEuler;
         this.rungeKutta = rungeKutta;
@@ -19,7 +18,7 @@ export default class SolutionView{
         let ctx = document.getElementById('mainChart');
 
         let labels = [];
-        this.exact.forEach((point) => {
+        this.euler.forEach((point) => {
             labels.push(point.x);
         });
 
@@ -27,16 +26,7 @@ export default class SolutionView{
             labels: labels,
             datasets: [
                 {
-                    label: 'Exact',
-                    data: this.exact,
-                    fill: false,
-                    borderColor: '#375e97',
-                    backgroudColor: '#375e97',
-                    pointBackgroudColor: '#375e97',
-                    pointBorderColor: '#375e97',
-                },
-                {
-                    label: 'Euler',
+                    label: 'Euler error',
                     data: this.euler,
                     fill: false,
                     borderColor: '#fb6542',
@@ -45,7 +35,7 @@ export default class SolutionView{
                     pointBorderColor: '#fb6542'
                 },
                 {
-                    label: 'Improved Euler',
+                    label: 'Improved Euler error',
                     data: this.improvedEuler,
                     fill: false,
                     borderColor: '#ffbb00',
@@ -54,7 +44,7 @@ export default class SolutionView{
                     pointBorderColor: '#ffbb00'
                 },
                 {
-                    label: 'Runge-Kutta',
+                    label: 'Runge-Kutta error',
                     data: this.rungeKutta,
                     fill: false,
                     borderColor: '#3f681c',

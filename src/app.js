@@ -1,13 +1,13 @@
 import 'bootstrap';
 import './assets/css/app.scss';
-import SubmitSolution from './view/submitSolution.js';
+import Submit from './view/submit.js';
 import SolutionView from './view/solutionView.js';
 import SolutionController from './controller/solutionController.js';
 
 let solutionContoller = new SolutionController(1, 2, 10, 3);
-solutionContoller.renderSolution();
+solutionContoller.update();
 
-let submitSolution = new SubmitSolution();
-submitSolution.setOnClick();
-submitSolution.enableAutoReload();
+let submit = new Submit();
+submit.setOnClick();
+submit.enableAutoReload();
 

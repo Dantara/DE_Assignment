@@ -10,7 +10,7 @@ export default class Euler {
         return 1 + 2 * (y/x);
     }
 
-    calculate(){
+    calculateSolution(){
         let slope;
 
         let tmpX = this.x0;
@@ -38,8 +38,19 @@ export default class Euler {
         }
     }
 
-    get result(){
+    get solution(){
         return this.data;
+    }
+
+    calculateLocalError(exactSolution){
+        this.localError = this.data.map((point, index) => {
+            let error = {
+                x: parseFloat(point.x),
+                y: Math.abs(point.y - exactSolution[index].y)
+            };
+
+            return error;
+        });
     }
 
 }
