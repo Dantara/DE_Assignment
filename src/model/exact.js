@@ -1,19 +1,12 @@
-export default class Exact {
+import RootModel from './rootModel.js';
+
+export default class Exact extends RootModel {
     constructor(x0, y0, X, n0, N){
-        this.x0 = x0;
-        this.y0 = y0;
-        this.X = X;
-        this.h = (X - x0) / N;
-        this.n0 = n0;
-        this.N = N;
+        super(x0, y0, X, n0, N);
     }
 
     fn(x){
         return -1 * x + this.C * (x*x);
-    }
-
-    getHForN(n){
-        this.h = (this.X - this.x0) / n;
     }
 
     solveIVP(){
