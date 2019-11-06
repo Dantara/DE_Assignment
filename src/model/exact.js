@@ -1,13 +1,19 @@
 export default class Exact {
-    constructor(x0, y0, X, N){
+    constructor(x0, y0, X, n0, N){
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
         this.h = (X - x0) / N;
+        this.n0 = n0;
+        this.N = N;
     }
 
     fn(x){
         return -1 * x + this.C * (x*x);
+    }
+
+    getHForN(n){
+        this.h = (this.X - this.x0) / n;
     }
 
     solveIVP(){
@@ -18,7 +24,7 @@ export default class Exact {
         this.solveIVP();
 
         let tmpX = this.x0;
-        this.data = [];
+        this.solution = [];
 
         while(tmpX <= this.X){
             let tmpY = this.fn(tmpX);
@@ -30,12 +36,18 @@ export default class Exact {
 
             tmpX = tmpX + this.h;
 
-            this.data.push(point);
+            this.solution.push(point);
         }
     }
 
-    get solution(){
-        return this.data;
+    calculateForRangeOfN(){
+        this.solutions = [];
+
+        for(let i = this.n0; i <= this.N; i++){
+            this.getHForN(i);
+            this.calculateSolution();
+            this.solutions.push(this.solution);
+        }
     }
 }
 

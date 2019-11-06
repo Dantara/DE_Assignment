@@ -2,9 +2,9 @@ import Exact from './../model/exact.js';
 import Euler from './../model/euler.js';
 import ImprovedEuler from './../model/improvedEuler.js';
 import RungeKutta from './../model/rungeKutta.js';
-import LocalErrorView from './../view/localErrorView.js';
+import GlobalErrorView from './../view/globalErrorView.js';
 
-export default class LocalErrorController{
+export default class GlobalErrorController{
     constructor(x0, y0, X, n0, N){
         this.x0 = x0;
         this.y0 = y0;
@@ -15,24 +15,20 @@ export default class LocalErrorController{
 
     update(){
         let exact = new Exact(this.x0, this.y0, this.X, this.n0, this.N);
-        exact.getHForN(this.N);
-        exact.calculateSolution();
+        exact.calculateForRangeOfN();
 
         let euler = new Euler(this.x0, this.y0, this.X, this.n0, this.N);
-        euler.getHForN(this.N);
-        euler.calculateLocalError(exact.solution);
+        euler.calculateGlobalError(exact.solutions);
 
         let improvedEuler = new ImprovedEuler(this.x0, this.y0, this.X, this.n0, this.N);
-        improvedEuler.getHForN(this.N);
-        improvedEuler.calculateLocalError(exact.solution);
+        improvedEuler.calculateGlobalError(exact.solutions);
 
         let rungeKutta = new RungeKutta(this.x0, this.y0, this.X, this.n0, this.N);
-        rungeKutta.getHForN(this.N);
-        rungeKutta.calculateLocalError(exact.solution);
+        rungeKutta.calculateGlobalError(exact.solutions);
 
-        let localErrorView = new LocalErrorView(euler.localError, improvedEuler.localError,
-                                            rungeKutta.localError);
-        localErrorView.render();
+        let globalErrorView = new GlobalErrorView(euler.globalError, improvedEuler.globalError,
+                                            rungeKutta.globalError);
+        globalErrorView.render();
 
     }
 }

@@ -1,13 +1,18 @@
 export default class RungeKutta {
-    constructor(x0, y0, X, N){
+    constructor(x0, y0, X, n0, N){
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;
-        this.h = (X - x0) / N;
+        this.N = N;
+        this.n0 = n0;
     }
 
     fn(x, y){
         return 1 + 2 * (y/x);
+    }
+
+    getHForN(n){
+        this.h = (this.X - this.x0) / n;
     }
 
     calculateSolution(){
@@ -19,9 +24,9 @@ export default class RungeKutta {
         let tmpX = this.x0;
         let tmpY = this.y0;
 
-        this.data = [];
+        this.solution = [];
 
-        this.data.push({
+        this.solution.push({
             x: parseFloat(tmpX).toFixed(2),
             y: parseFloat(tmpY).toFixed(2)
         });
@@ -40,16 +45,14 @@ export default class RungeKutta {
                 y: parseFloat(tmpY).toFixed(2)
             };
 
-            this.data.push(point);
+            this.solution.push(point);
         }
     }
 
-    get solution(){
-        return this.data;
-    }
-
     calculateLocalError(exactSolution){
-        this.localError = this.data.map((point, index) => {
+        this.calculateSolution();
+
+        this.localError = this.solution.map((point, index) => {
             let error = {
                 x: parseFloat(point.x),
                 y: Math.abs(point.y - exactSolution[index].y)
@@ -57,6 +60,24 @@ export default class RungeKutta {
 
             return error;
         });
+    }
+
+    calculateGlobalError(exactSolutions){
+        this.globalError = [];
+
+        for(let i = 0; i <= this.N - this.n0; i++){
+            this.getHForN(i + this.n0);
+            this.calculateLocalError(exactSolutions[i]);
+
+            let ys = this.localError.map(point => point.y);
+
+            console.log(ys);
+
+            this.globalError.push({
+                x: this.n0 + i,
+                y: Math.max(...ys)
+            });
+        }
     }
 
 }

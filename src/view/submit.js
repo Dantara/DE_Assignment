@@ -1,19 +1,23 @@
 import LocalErrorController from './../controller/localErrorController.js';
 import SolutionController from './../controller/solutionController.js';
+import GlobalErrorController from './../controller/globalErrorController.js';
 
 export default class Submit{
     constructor(){
         this.x0_el = document.getElementById("inputX0");
         this.y0_el = document.getElementById("inputY0");
         this.X_el = document.getElementById("inputX");
+        this.n0_el = document.getElementById("inputN0");
         this.N_el = document.getElementById("inputN");
         this.chart = document.getElementById("selectChart");
+        this.n0_container = document.getElementById("n0-container");
     }
 
     readData(){
         this.x0 = parseFloat(this.x0_el.value);
         this.y0 = parseFloat(this.y0_el.value);
         this.X = parseFloat(this.X_el.value);
+        this.n0 = parseFloat(this.n0_el.value);
         this.N = parseFloat(this.N_el.value);
     }
 
@@ -40,13 +44,21 @@ export default class Submit{
         if(this.checkData()){
             switch(this.chart.selectedIndex){
             case 0:
-                let solution = new SolutionController(this.x0, this.y0, this.X, this.N);
+                this.n0_container.style.display = 'none';
+                let solution = new SolutionController(this.x0, this.y0, this.X, this.n0, this.N);
                 solution.update();
                 break;
+
             case 1:
-                let localError = new LocalErrorController(this.x0, this.y0, this.X, this.N);
+                this.n0_container.style.display = 'none';
+                let localError = new LocalErrorController(this.x0, this.y0, this.X, this.n0, this.N);
                 localError.update();
                 break;
+
+            case 2:
+                this.n0_container.style.display = 'flex';
+                let globalError = new GlobalErrorController(this.x0, this.y0, this.X, this.n0, this.N);
+                globalError.update();
             }
         }
     }
@@ -70,6 +82,7 @@ export default class Submit{
         this.x0_el.onkeyup = update;
         this.y0_el.onkeyup = update;
         this.X_el.onkeyup = update;
+        this.n0_el.onkeyup = update;
         this.N_el.onkeyup = update;
         this.chart.onchange = update;
     }
