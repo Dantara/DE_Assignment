@@ -11,4 +11,3 @@ solutionContoller.update();
 let submit = new Submit();
 submit.setOnClick();
 submit.enableAutoReload();
-
