@@ -4,7 +4,8 @@
     "description": "",
     "private": true,
     "scripts": {
-        "build": "webpack --config webpack.config.js"
+        "build": "webpack --config webpack.config.js",
+        "stats": "cloc dist/index.html src/ ./package.json ./webpack.config.js"
     },
     "keywords": [],
     "author": "Nikita Aleschenko",
@@ -24,6 +25,7 @@
         "webpack-cli": "^3.3.9"
     },
     "dependencies": {
+        "cloc": "^2.5.0",
         "lodash": "^4.17.15",
         "mathjax": "^3.0.0",
         "popper": "^1.0.1"
