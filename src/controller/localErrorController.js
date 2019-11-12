@@ -1,7 +1,3 @@
-import Exact from './../model/exact.js';
-import Euler from './../model/euler.js';
-import ImprovedEuler from './../model/improvedEuler.js';
-import RungeKutta from './../model/rungeKutta.js';
 import LocalErrorView from './../view/localErrorView.js';
 import RootController from './rootController.js';
 
@@ -11,25 +7,22 @@ export default class LocalErrorController extends RootController{
     }
 
     update(){
-        let exact = new Exact(this.x0, this.y0, this.X, this.n0, this.N);
-        exact.getHForN(this.N);
-        exact.calculateSolution();
+        this.updateData();
 
-        let euler = new Euler(this.x0, this.y0, this.X, this.n0, this.N);
-        euler.getHForN(this.N);
-        euler.calculateLocalError(exact.solution);
+        this.exact.getHForN(this.N);
+        this.exact.calculateSolution();
 
-        let improvedEuler = new ImprovedEuler(this.x0, this.y0, this.X, this.n0, this.N);
-        improvedEuler.getHForN(this.N);
-        improvedEuler.calculateLocalError(exact.solution);
+        this.euler.getHForN(this.N);
+        this.euler.calculateLocalError(this.exact.solution);
 
-        let rungeKutta = new RungeKutta(this.x0, this.y0, this.X, this.n0, this.N);
-        rungeKutta.getHForN(this.N);
-        rungeKutta.calculateLocalError(exact.solution);
+        this.improvedEuler.getHForN(this.N);
+        this.improvedEuler.calculateLocalError(this.exact.solution);
 
-        let localErrorView = new LocalErrorView(euler.localError, improvedEuler.localError,
-                                            rungeKutta.localError);
+        this.rungeKutta.getHForN(this.N);
+        this.rungeKutta.calculateLocalError(this.exact.solution);
+
+        let localErrorView = new LocalErrorView(this.euler.localError, this.improvedEuler.localError,
+                                            this.rungeKutta.localError);
         localErrorView.render();
-
     }
 }

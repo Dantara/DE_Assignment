@@ -1,4 +1,3 @@
-
 import RootView from './rootView.js';
 
 export default class ErrorView extends RootView{

@@ -1,12 +1,15 @@
 import NumericalModel from './numericalModel.js';
 
-export default class Euler extends NumericalModel {
+export default class RungeKuttaModel extends NumericalModel {
     constructor(x0, y0, X, n0, N){
         super(x0, y0, X, n0, N);
     }
 
     calculateSolution(){
-        let slope;
+        let m1;
+        let m2;
+        let m3;
+        let m4;
 
         let tmpX = this.x0;
         let tmpY = this.y0;
@@ -19,10 +22,13 @@ export default class Euler extends NumericalModel {
         });
 
         while(tmpX + this.h <= this.X){
-            slope = this.fn(tmpX + this.h, tmpY);
+            m1 = this.h * this.fn(tmpX, tmpY);
+            m2 = this.h * this.fn(tmpX + (this.h / 2), tmpY + (m1/2));
+            m3 = this.h * this.fn(tmpX + (this.h / 2), tmpY + (m2/2));
+            m4 = this.h * this.fn(tmpX + this.h, tmpY + m3);
 
-            tmpY = tmpY + slope * this.h;
             tmpX = tmpX + this.h;
+            tmpY = tmpY + (m1 + (2 * m2) + (2 * m3) + m4) / 6;
 
             let point = {
                 x: parseFloat(tmpX).toFixed(2),
@@ -32,6 +38,4 @@ export default class Euler extends NumericalModel {
             this.solution.push(point);
         }
     }
-
-
 }

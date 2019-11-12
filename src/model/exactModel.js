@@ -1,6 +1,6 @@
 import RootModel from './rootModel.js';
 
-export default class Exact extends RootModel {
+export default class ExactModel extends RootModel {
     constructor(x0, y0, X, n0, N){
         super(x0, y0, X, n0, N);
     }

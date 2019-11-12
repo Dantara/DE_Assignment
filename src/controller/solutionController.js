@@ -1,7 +1,3 @@
-import Exact from './../model/exact.js';
-import Euler from './../model/euler.js';
-import ImprovedEuler from './../model/improvedEuler.js';
-import RungeKutta from './../model/rungeKutta.js';
 import SolutionView from './../view/solutionView.js';
 import RootController from './rootController.js';
 
@@ -11,24 +7,22 @@ export default class SolutionController extends RootController{
     }
 
     update(){
-        let exact = new Exact(this.x0, this.y0, this.X, this.n0, this.N);
-        exact.getHForN(this.N);
-        exact.calculateSolution();
+        this.updateData();
 
-        let euler = new Euler(this.x0, this.y0, this.X, this.n0, this.N);
-        euler.getHForN(this.N);
-        euler.calculateSolution();
+        this.exact.getHForN(this.N);
+        this.exact.calculateSolution();
 
-        let improvedEuler = new ImprovedEuler(this.x0, this.y0, this.X, this.n0, this.N);
-        improvedEuler.getHForN(this.N);
-        improvedEuler.calculateSolution();
+        this.euler.getHForN(this.N);
+        this.euler.calculateSolution();
 
-        let rungeKutta = new RungeKutta(this.x0, this.y0, this.X, this.n0, this.N);
-        rungeKutta.getHForN(this.N);
-        rungeKutta.calculateSolution();
+        this.improvedEuler.getHForN(this.N);
+        this.improvedEuler.calculateSolution();
 
-        let solutionView = new SolutionView(exact.solution, euler.solution,
-                                            improvedEuler.solution, rungeKutta.solution);
+        this.rungeKutta.getHForN(this.N);
+        this.rungeKutta.calculateSolution();
+
+        let solutionView = new SolutionView(this.exact.solution, this.euler.solution,
+                                            this.improvedEuler.solution, this.rungeKutta.solution);
         solutionView.render();
 
     }

@@ -1,13 +1,12 @@
 import NumericalModel from './numericalModel.js';
 
-export default class ImprovedEuler extends NumericalModel {
+export default class EulerModel extends NumericalModel {
     constructor(x0, y0, X, n0, N){
         super(x0, y0, X, n0, N);
     }
 
     calculateSolution(){
-        let m1;
-        let m2;
+        let slope;
 
         let tmpX = this.x0;
         let tmpY = this.y0;
@@ -20,10 +19,9 @@ export default class ImprovedEuler extends NumericalModel {
         });
 
         while(tmpX + this.h <= this.X){
-            m1 = this.fn(tmpX, tmpY);
-            m2 = this.fn(tmpX + this.h, tmpY + m1 * this.h);
+            slope = this.fn(tmpX + this.h, tmpY);
 
-            tmpY = tmpY + this.h * (m1 + m2) / 2;
+            tmpY = tmpY + slope * this.h;
             tmpX = tmpX + this.h;
 
             let point = {
@@ -34,4 +32,5 @@ export default class ImprovedEuler extends NumericalModel {
             this.solution.push(point);
         }
     }
+
 }
