@@ -1,80 +1,34 @@
-import Chart from 'chart.js';
+import ErrorView from './errorView.js';
 
-export default class GlobalErrorView{
-    constructor(euler, impovedEuler, rungeKutta){
-        this.euler = euler;
-        this.improvedEuler = impovedEuler;
-        this.rungeKutta = rungeKutta;
-    }
-
-    updateChartCanvas(){
-        let container = document.getElementById('mainChartContainer');
-        container.innerHTML = '<canvas id="mainChart"></canvas>';
+export default class GlobalErrorView extends ErrorView{
+    constructor(euler, improvedEuler, rungeKutta){
+        super(euler, improvedEuler, rungeKutta);
     }
 
     render(){
         this.updateChartCanvas();
 
-        let ctx = document.getElementById('mainChart');
-
-        let labels = [];
-        this.euler.forEach((point) => {
-            labels.push(point.x);
-        });
-
-        let data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Euler error',
-                    data: this.euler,
-                    fill: false,
-                    borderColor: '#fb6542',
-                    backgroundColor: '#fb6542',
-                },
-                {
-                    label: 'Improved Euler error',
-                    data: this.improvedEuler,
-                    fill: false,
-                    borderColor: '#ffbb00',
-                    backgroundColor: '#ffbb00',
-                },
-                {
-                    label: 'Runge-Kutta error',
-                    data: this.rungeKutta,
-                    fill: false,
-                    borderColor: '#3f681c',
-                    backgroundColor: '#3f681c',
-                }]
+        let datasetConfig = {
+            exact: {
+                label: 'Exact',
+                show: false
+            },
+            euler: {
+                label: 'Euler error',
+                show: true
+            },
+            improvedEuler: {
+                label: 'Improved Euler error',
+                show: true
+            },
+            rungeKutta: {
+                label: 'Runge-Kutta error',
+                show: true
+            }
         };
 
-        console.log(data);
+        this.setData(datasetConfig);
 
-        let myChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: {
-                responsive: true,
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'N'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Global Error'
-                        },
-                    }]
-                },
-                animation: {
-                    duration: 0
-                }
-            },
-        });
+        this.renderChart({x: 'N', y: 'Total error'});
     }
 }

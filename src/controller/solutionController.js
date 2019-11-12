@@ -3,14 +3,11 @@ import Euler from './../model/euler.js';
 import ImprovedEuler from './../model/improvedEuler.js';
 import RungeKutta from './../model/rungeKutta.js';
 import SolutionView from './../view/solutionView.js';
+import RootController from './rootController.js';
 
-export default class SolutionController{
+export default class SolutionController extends RootController{
     constructor(x0, y0, X, n0, N){
-        this.x0 = x0;
-        this.y0 = y0;
-        this.X = X;
-        this.n0 = n0;
-        this.N = N;
+        super(x0, y0, X, n0, N);
     }
 
     update(){

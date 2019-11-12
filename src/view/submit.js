@@ -25,7 +25,7 @@ export default class Submit{
         let renderButton = document.getElementById("renderSolution");
         let wrongDataButton = document.getElementById("wrongData");
 
-        if(this.N > 0 && this.x0 != 0 && this.X > this.x0){
+        if(this.N > 0 && this.x0 != 0 && this.X > this.x0 && this.n0 < this.N && this.n0 > 0){
             renderButton.style.display = 'block';
             wrongDataButton.style.display = 'none';
 

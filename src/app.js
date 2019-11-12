@@ -1,8 +1,7 @@
 import 'bootstrap';
-import './assets/css/app.scss';
+import './assets/app.scss';
 import 'mathjax/es5/tex-chtml-full.js';
 import Submit from './view/submit.js';
-import SolutionView from './view/solutionView.js';
 import SolutionController from './controller/solutionController.js';
 
 let solutionContoller = new SolutionController(1, 2, 10,1, 3);
