@@ -43,22 +43,25 @@ export default class Submit{
 
         if(this.checkData()){
             switch(this.chart.selectedIndex){
-            case 0:
+            case 0: {
                 this.n0_container.style.display = 'none';
                 let solution = new SolutionController(this.x0, this.y0, this.X, this.n0, this.N);
                 solution.update();
                 break;
+            }
 
-            case 1:
+            case 1: {
                 this.n0_container.style.display = 'none';
                 let localError = new LocalErrorController(this.x0, this.y0, this.X, this.n0, this.N);
                 localError.update();
                 break;
+            }
 
-            case 2:
+            case 2: {
                 this.n0_container.style.display = 'flex';
                 let globalError = new GlobalErrorController(this.x0, this.y0, this.X, this.n0, this.N);
                 globalError.update();
+            }
             }
         }
     }
@@ -77,7 +80,7 @@ export default class Submit{
 
         function update(){
             self.update();
-        };
+        }
 
         this.x0_el.onkeyup = update;
         this.y0_el.onkeyup = update;

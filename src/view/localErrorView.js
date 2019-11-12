@@ -1,4 +1,3 @@
-import Chart from 'chart.js';
 import ErrorView from './errorView.js';
 
 export default class LocalErrorView extends ErrorView{

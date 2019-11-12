@@ -70,7 +70,7 @@ export default class RootView{
     renderChart(labelsNames){
         let ctx = document.getElementById('mainChart');
 
-        let myChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'line',
             data: this.data,
             options: {
