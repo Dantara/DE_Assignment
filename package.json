@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "cloc": "^2.5.0",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "mathjax": "^3.0.0",
         "popper": "^1.0.1"
     }
